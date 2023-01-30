@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-k8s-stack
+  path: "./catalog/kyverno"
+  prune: true
+  wait: true
+  patches:
+    - target:
+        kind: Deployment
+        name: kyverno
+        namespace: kyverno
+      patch: |-
+        - op: add
+          path: /spec/values/replicaCount
+          value: 3
