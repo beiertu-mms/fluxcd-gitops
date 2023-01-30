@@ -13,12 +13,3 @@ spec:
   path: "./catalog/kyverno"
   prune: true
   wait: true
-  patches:
-    - target:
-        kind: Deployment
-        name: kyverno
-        namespace: kyverno
-      patch: |-
-        - op: add
-          path: /spec/values/replicaCount
-          value: 3
