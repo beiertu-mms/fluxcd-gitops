@@ -6,4 +6,3 @@ resources:
   - namespaces.yaml
   - kyverno
   - ingress-nginx
-  - cert-manager.yaml
