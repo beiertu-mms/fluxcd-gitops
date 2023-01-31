@@ -30,3 +30,14 @@ spec:
   path: "./catalog/cert-manager"
   prune: true
   wait: true
+  patches:
+    - patch: |
+        - op: add
+          path: /spec/values/serviceAccount
+          value:
+            annotations:
+              iam.gke.io/gcp-service-account: service-account@mail.com
+      target:
+        kind: HelmRelease
+        name: cert-manager
+        namespace: cert-manager
