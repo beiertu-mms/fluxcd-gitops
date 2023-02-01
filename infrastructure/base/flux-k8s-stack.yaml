@@ -8,4 +8,4 @@ spec:
   interval: 5m0s
   url: https://github.com/kharf/flux-k8s-stack
   ref:
-    branch: feat/add-ingress-nginx
+    branch: feat/add-istio-stack
