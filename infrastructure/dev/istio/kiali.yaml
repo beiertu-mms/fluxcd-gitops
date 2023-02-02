@@ -16,8 +16,8 @@ spec:
     - name: istio-system
       namespace: flux-system
     # The prometheus-operator is required for visualization
-    - name: prometheus-operator
-      namespace: monitoring
+#    - name: prometheus-operator
+#      namespace: monitoring
   prune: true
   wait: true
   healthChecks:
