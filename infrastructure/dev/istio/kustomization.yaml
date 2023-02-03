@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - releases.yaml
   - configurations.yaml
+  - kiali.yaml
