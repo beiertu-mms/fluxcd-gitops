@@ -5,3 +5,4 @@ resources:
   - flux-k8s-stack.yaml
   - namespaces.yaml
   - kind-dashboard.yaml
+  - kind-dashboard-user.yaml
