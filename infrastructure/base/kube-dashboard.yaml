@@ -326,4 +326,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: admin-user
-    namespace: kubernetes-dashboard---
+    namespace: kubernetes-dashboard
