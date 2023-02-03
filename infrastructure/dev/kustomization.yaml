@@ -6,4 +6,5 @@ resources:
   - kyverno
   - ingress-nginx
   - cert-manager
+  - prometheus
   - istio
