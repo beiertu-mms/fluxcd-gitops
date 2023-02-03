@@ -7,4 +7,3 @@ resources:
   - ingress-nginx
   - cert-manager
   - istio
-  - prometheus
