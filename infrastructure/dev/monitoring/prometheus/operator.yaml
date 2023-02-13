@@ -19,79 +19,10 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    # Kubernetes switched from kube-dns to core-dns in 1.13, but GKE Kubernetes still defaults to kube-dns.
-    # See https://cloud.google.com/kubernetes-engine/docs/release-notes
-    coreDns:
-      enabled: false
-    kubeDns:
-      enabled: true
-    defaultRules:
-      rules:
-        # Our Kubernetes cluster is managed, so we don't have direct access to internal components (etcd and kubeScheduler).
-        etcd: false
-        kubeScheduler: false
-        # NTP is configured by Google, so time (i.e. ClockSkewDetected) is also nothing we could influence. However, this is
-        # triggered rather often, so at some point we might open a case at Google.
-        time: false
-        # Although we probably *should* care about overcommitting, we actually don't. At least not on dev and test.
-        kubernetesResources: false
-      disabled:
-        # https://github.com/kubernetes-monitoring/kubernetes-mixin/pull/401
-        # https://github.com/kubernetes/kube-aggregator/issues/23
-        AggregatedAPIDown: true
-        # https://github.com/coreos/prometheus-operator/issues/1843
-        KubeClientCertificateExpiration: true
-        # https://github.com/kubernetes-monitoring/kubernetes-mixin/issues/108
-        # https://github.com/helm/charts/issues/14801
-        CPUThrottlingHigh: true
-        # Not enabled at all
-        KubeProxyDown: true
-        # Info alerts are not in use
-        InfoInhibitor: true
-        # Unnecessary for non-prod
-        Watchdog: true
-    kubeControllerManager:
-      enabled: false
-    kubeEtcd:
-      enabled: false
-    kubeScheduler:
-      enabled: false
-    kubeProxy:
-      enabled: false
-    # PROCO-1122 - This forces kubelet exporter to scrape the http-metric endpoint
-    # https://github.com/helm/charts/blob/master/stable/prometheus-operator/values.yaml#L643
-    # https://github.com/coreos/prometheus-operator/issues/926#issuecomment-476437013
-    # https://github.com/helm/charts/commit/062ee017ffc9d737c558cb3b3129cb749ff31592
-    kubelet:
-      enabled: true
-      serviceMonitor:
-        https: false
-    prometheus:
-      service:
-        type: NodePort
-        nodePort: 30000
     grafana:
-      service:
-        type: aNodePort
-        nodePort: 31000
+      enabled: false
     alertmanager:
-      service:
-        type: NodePort
-        nodePort: 32000
-    prometheus-node-exporter:
-      service:
-        type: NodePort
-        nodePort: 32001
-#      prometheusSpec:
-#        serviceMonitorSelectorNilUsesHelmValues: false
-#        podMonitorSelectorNilUsesHelmValues: false
-#        ruleSelectorNilUsesHelmValues: false
-#        retention: 60d
-#        storageSpec:
-#          volumeClaimTemplate:
-#            spec:
-#              storageClassName: local-storage
-#              accessModes: ["ReadWriteOnce"]
-#              resources:
-#                requests:
-#                  storage: 1Gi
+      enabled: false
+    prometheus:
+      ingress:
+        enabled: false
