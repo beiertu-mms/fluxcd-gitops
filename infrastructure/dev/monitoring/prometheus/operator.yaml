@@ -79,8 +79,8 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: regional-storage
+              storageClassName: local-storage
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
-                  storage: 100Gi
+                  storage: 1Gi
