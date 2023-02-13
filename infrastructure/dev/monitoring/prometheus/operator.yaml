@@ -66,21 +66,32 @@ spec:
       enabled: true
       serviceMonitor:
         https: false
-    grafana:
-      enabled: false
-    alertmanager:
-      enabled: false
     prometheus:
-      prometheusSpec:
-        serviceMonitorSelectorNilUsesHelmValues: false
-        podMonitorSelectorNilUsesHelmValues: false
-        ruleSelectorNilUsesHelmValues: false
-        retention: 60d
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-storage
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 1Gi
+      service:
+        type: NodePort
+        nodePort: 30000
+    grafana:
+      service:
+        type: aNodePort
+        nodePort: 31000
+    alertmanager:
+      service:
+        type: NodePort
+        nodePort: 32000
+    prometheus-node-exporter:
+      service:
+        type: NodePort
+        nodePort: 32001
+#      prometheusSpec:
+#        serviceMonitorSelectorNilUsesHelmValues: false
+#        podMonitorSelectorNilUsesHelmValues: false
+#        ruleSelectorNilUsesHelmValues: false
+#        retention: 60d
+#        storageSpec:
+#          volumeClaimTemplate:
+#            spec:
+#              storageClassName: local-storage
+#              accessModes: ["ReadWriteOnce"]
+#              resources:
+#                requests:
+#                  storage: 1Gi
