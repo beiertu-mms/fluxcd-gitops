@@ -5,4 +5,3 @@ resources:
   - flux-k8s-stack.yaml
   - namespaces.yaml
   - kube-dashboard.yaml
-  - istio-stack-repositories.yaml
