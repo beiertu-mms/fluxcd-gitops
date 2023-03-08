@@ -12,6 +12,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-k8s-stack
-  path: "./catalog/istio-stack/gke"
+  path: "./catalog/istio-stack/base"
   prune: true
   wait: true
